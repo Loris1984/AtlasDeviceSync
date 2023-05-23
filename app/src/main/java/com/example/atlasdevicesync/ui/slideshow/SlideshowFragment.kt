@@ -7,13 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
-import com.example.atlasdevicesync.bean.Ship
 import com.example.atlasdevicesync.bean.Veicoli
 import com.example.atlasdevicesync.databinding.FragmentSlideshowBinding
 import com.google.gson.Gson
-import java.io.BufferedWriter
-import java.io.OutputStream
-import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 

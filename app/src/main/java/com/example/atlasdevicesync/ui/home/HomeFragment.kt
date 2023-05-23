@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.atlasdevicesync.bean.Ship
 import com.example.atlasdevicesync.databinding.FragmentHomeBinding
 import com.google.gson.Gson
 import java.net.HttpURLConnection
@@ -31,8 +30,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
@@ -45,21 +43,8 @@ class HomeFragment : Fragment() {
             Secure.ANDROID_ID
         )
 
-        val connection = URL("https://eu-central-1.aws.data.mongodb-api.com/app/httpapp-ifjdw/endpoint/shipwrek").openConnection() as HttpURLConnection
-        try {
-            val dataInput = connection.inputStream.bufferedReader().use { it.readText() }
-            //val doc: Document = Document.parse(dataInput)
-            val gson = Gson()
-            val ships: Array<Ship> = gson.fromJson(dataInput, Array<Ship>::class.java)
-            val ship = ships.get(1)
-        } catch(e: Exception) {
-            val error = e.message;
-        } finally {
-            connection.disconnect()
-        }
-
         var identificativo = android_id
-        if(android_id.equals("b6bbd4294eaedc5d")) {
+        if (android_id.equals("b6bbd4294eaedc5d")) {
             identificativo = android_id + ": Tu "
         }
         val textView: TextView = binding.texthome
