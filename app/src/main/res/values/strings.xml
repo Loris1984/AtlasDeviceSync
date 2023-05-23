@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">AtlasDeviceSync</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Hackathon 2.0</string>
+    <string name="nav_header_subtitle">Team1</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Aggiungi percorso</string>
+    <string name="menu_slideshow">Mappa</string>
+
+    <string-array name="planets_array">
+        <item>Bike elettrica</item>
+        <item>Auto elettrica</item>
+        <item>Autobus elettrico</item>
+    </string-array>
+
+</resources>
