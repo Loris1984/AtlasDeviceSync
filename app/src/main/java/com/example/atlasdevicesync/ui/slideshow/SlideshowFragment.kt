@@ -32,7 +32,9 @@ class SlideshowFragment : Fragment() {
         val root: View = binding.root
 
         val webView: WebView = binding.webView
-        webView.loadUrl("https://www.google.it")
+        //webView.loadUrl("https://www.google.it")
+        val iframe = "<iframe style=\"background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);\" width=\"640\" height=\"480\" src=\"https://charts.mongodb.com/charts-hackathon-sogei-team1-jawas/embed/charts?id=646b7231-bf43-4734-8206-b2784f4eb495&maxDataAge=3600&theme=light&autoRefresh=true\"></iframe>";
+        webView.loadData(iframe,"text/html", null);
         webView.settings.javaScriptEnabled = true
         webView.settings.setSupportZoom(true)
 

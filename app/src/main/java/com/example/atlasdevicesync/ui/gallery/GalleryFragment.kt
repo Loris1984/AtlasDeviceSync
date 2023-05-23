@@ -132,7 +132,7 @@ class GalleryFragment : Fragment() {
     }
 
     /*fun connectToMongo() {
-        val app = App.create(YOUR_APP_ID)
+        val app = App.create("http_veicoli_vicini-nehfd")
 // use constants for query names so you can edit or remove them later
         val NAME_QUERY = "NAME_QUERY"
         runBlocking {
