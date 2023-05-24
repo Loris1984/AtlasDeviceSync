@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.gallery.GalleryFragment">
 
     <LinearLayout
@@ -12,20 +13,69 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <Spinner
+        <!--Spinner
             android:id="@+id/veicoli_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/planets_array" />
+            android:entries="@array/planets_array" /-->
 
         <TextView
             android:id="@+id/label_KM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="KM percorsi" />
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="Mezzi intorno a te" />
 
-        <EditText
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_border_user">
+
+            <TextView
+                android:id="@+id/testo_veicolo"
+                android:layout_width="0dp"
+                android:layout_weight=".30"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Tipo"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:id="@+id/testo_identificativo"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="Identificativo"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/testo_stato"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textAlignment="textEnd"
+                android:gravity="center"
+                android:text="Stato"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/veicoli"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--EditText
             android:id="@+id/km_percorsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +116,7 @@
             android:layout_height="wrap_content"
             android:onClick="clickButton"
             android:layout_gravity="right"
-            android:text="Aggiungi" />
+            android:text="Aggiungi" /-->
 
     </LinearLayout>
 

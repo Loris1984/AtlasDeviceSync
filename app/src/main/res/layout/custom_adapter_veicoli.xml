@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/custom_border_user">
+
+    <ImageView
+        android:id="@+id/icona_veicolo"
+        android:layout_width="0dp"
+        android:layout_weight=".20"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/identificativo"
+        android:layout_width="0dp"
+        android:layout_weight=".99"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/stato"
+        android:layout_width="0dp"
+        android:layout_weight=".10"
+        android:layout_height="20dp"
+        android:src="@drawable/stato_disponibile"
+        android:textAlignment="center"
+        android:gravity="center" />
+
+
+
+</LinearLayout>

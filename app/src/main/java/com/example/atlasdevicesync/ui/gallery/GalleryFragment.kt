@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.os.StrictMode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +16,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.atlasdevicesync.bean.Veicoli
 import com.example.atlasdevicesync.databinding.FragmentGalleryBinding
-import io.realm.kotlin.Realm
-import io.realm.kotlin.mongodb.App
-import io.realm.kotlin.mongodb.Credentials
-import io.realm.kotlin.mongodb.sync.SyncConfiguration
-import java.text.SimpleDateFormat
+import com.example.atlasdevicesync.ui.CustomAdapter
+import com.example.atlasdevicesync.ui.CustomAdapterVeicoli
+import com.google.gson.Gson
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.Calendar
 
 
@@ -31,6 +35,9 @@ class GalleryFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var adapter: CustomAdapterVeicoli
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +53,29 @@ class GalleryFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.labelKM
-        galleryViewModel.text.observe(viewLifecycleOwner) {
+
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+
+        val connection = URL("https://eu-central-1.aws.data.mongodb-api.com/app/http_veicoli_vicini-nehfd/endpoint/veicolivicini?arg1=12.485572&arg2=41.797275").openConnection() as HttpURLConnection
+        try {
+            val dataInput = connection.inputStream.bufferedReader().use { it.readText() }
+            val gson = Gson()
+            val veicoli: Array<Veicoli> = gson.fromJson(dataInput, Array<Veicoli>::class.java)
+
+            val layoutManager = LinearLayoutManager(context)
+            recyclerView = root.findViewById(com.example.atlasdevicesync.R.id.veicoli)
+            recyclerView.layoutManager = layoutManager
+            recyclerView.setHasFixedSize(true)
+            adapter = CustomAdapterVeicoli(veicoli)
+            recyclerView.adapter = adapter
+
+        } catch(e: Exception) {
+            val error = e.message;
+        } finally {
+            connection.disconnect()
+        }
+        /*galleryViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
 
@@ -121,7 +150,7 @@ class GalleryFragment : Fragment() {
             } else {
                 Toast.makeText(activity, "Selezionati: " + km.text.toString() + " KM" + " percorsi con " + veicolo.selectedItem.toString(), Toast.LENGTH_LONG).show()
             }
-        }
+        }*/
 
         return root
     }
